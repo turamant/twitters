@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Page</title>
+</head>
+<body>
+<h2>Hello Page.</h2>
+{% if name %}
+<h3>Hello {{ login }}!</h3>
+{% else %}
+<h3>Hello, world!</h3>
+{% endif %}
+
+<h2>Messages</h2>
+<form method="post" action="/add_message">
+    <input type="text" name="text">
+    <input type="text" name="tag">
+    <button type="submit">Add message</button>
+</form>
+
+<h3>message list:</h3>
+    {% for message in messages %}
+        <div>{{ message.text }}
+            {% for tag in message.tags %}
+            <b><i>#{{ tag.text }}</i></b>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+<a href="{{ url_for('index') }}">index Page</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
